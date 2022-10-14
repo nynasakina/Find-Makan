@@ -5,17 +5,27 @@ import { getPlaceData } from "./api/index.js";
 import Header from "./components/Header/Header.js";
 import List from "./components/List/List.js";
 import Map from "./components/Map/Map.js";
-import { Data } from "@react-google-maps/api";
 
 const App = () => {
   const [places, setPlaces] = useState([]);
+  const [coordinates, setCoordinates] = useState({});
+  const [bounds, setBounds] = useState({ sw: 0, ne: 0 });
+
+  // getting current location of user
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoordinates({ lat: latitude, lng: longitude });
+      }
+    );
+  }, []);
 
   useEffect(() => {
-    getPlaceData().then((data) => {
+    getPlaceData(bounds.sw, bounds.ne).then((data) => {
       console.log(data);
       setPlaces(data);
-    });
-  }, []);
+    }); 
+  }, [coordinates, bounds]);
 
   return (
     <div>
@@ -27,7 +37,11 @@ const App = () => {
         </Grid>
 
         <Grid item xs={12} md={8}>
-          <Map />
+          <Map
+            setCoordinates={setCoordinates}
+            setBounds={setBounds}
+            coordinates={coordinates}
+          />
         </Grid>
       </Grid>
     </div>
