@@ -32,15 +32,16 @@ const App = () => {
   }, [rating]);
 
   useEffect(() => {
-    setLoading(true);
-    getPlaceData(bounds.sw, bounds.ne).then((data) => {
-      setPlaces(data);
-      setFilteredPlaces([]);
-      setLoading(false);
-    });
+    if (bounds) {
+      setLoading(true);
+      getPlaceData(bounds.sw, bounds.ne).then((data) => {
+        setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
+        setFilteredPlaces([]);
+        setLoading(false);
+      });
+    }
   }, [coordinates, bounds]);
 
-  console.log(places);
   return (
     <div>
       <CssBaseline />
