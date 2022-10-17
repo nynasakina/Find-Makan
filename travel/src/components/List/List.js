@@ -35,17 +35,16 @@ const List = (props) => {
         </div>
       ) : (
         <>
+          {/* Not working as data doesnot contain Halal details */}
           <FormControl className={classes.formControl}>
-            <InputLabel>Type</InputLabel>
+            <InputLabel>Halal</InputLabel>
             <Select
-              value={type}
+              value={props.isHalal}
               onChange={(e) => {
-                setType(e.target.value);
+                props.setIsHalal(e.target.value);
               }}
             >
-              <MenuItem value="restaurants">Restaurants</MenuItem>
-              <MenuItem value="hotels">Hotels</MenuItem>
-              <MenuItem value="attractions">Attractions</MenuItem>
+              <MenuItem value="halal">Halal</MenuItem>
             </Select>
           </FormControl>
 

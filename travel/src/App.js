@@ -14,6 +14,8 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState("");
   const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [isHalal, setIsHalal] = useState("");
+  const [filteredHalal, setFilteredHalal] = useState([]);
 
   // getting current location of user
   useEffect(() => {
@@ -38,10 +40,11 @@ const App = () => {
     });
   }, [coordinates, bounds]);
 
+  console.log(places);
   return (
     <div>
       <CssBaseline />
-      <Header />
+      <Header setCoordinates={setCoordinates} />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
           <List
@@ -50,6 +53,8 @@ const App = () => {
             loading={loading}
             rating={rating}
             setRating={setRating}
+            isHalal={isHalal}
+            setIsHalal={setIsHalal}
           />
         </Grid>
 
