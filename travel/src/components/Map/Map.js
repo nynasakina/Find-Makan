@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { Paper, Typography, useMediaQuery } from "@material-ui/core";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-// import Rating from "@material-ui/lab";
+import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
 
 const Map = (props) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery("(min-width:600px)");
-  console.log(props.places);
-  // const coordinates = { lat: 0, lng: 0 };
 
   return (
     <>
@@ -26,6 +24,9 @@ const Map = (props) => {
             console.log(e);
             props.setCoordinates({ lat: e.center.lat, lng: e.center.lng });
             props.setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+          }}
+          onChildClick={(child) => {
+            props.setChildClicked(child)
           }}
         >
           {props.places?.map((places, i) => (
@@ -55,6 +56,7 @@ const Map = (props) => {
                         : "https://st2.depositphotos.com/3904951/8925/v/450/depositphotos_89250312-stock-illustration-photo-picture-web-icon-in.jpg"
                     }
                   />
+                  <Rating size="small" value={Number(places.rating)} readOnly />
                 </Paper>
               )}
             </div>

@@ -19,6 +19,7 @@ const List = (props) => {
   const [rating, setRating] = useState("");
 
   console.log(`List props: ${props}`);
+  console.log(props.childClicked);
   return (
     <>
       <div className={classes.container}>
