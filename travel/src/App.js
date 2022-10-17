@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     const filteredPlace = places.filter(
-      (place) => Number(place.rating) == rating
+      (place) => Number(place.rating) === rating
     );
     setFilteredPlaces(filteredPlace);
   }, [rating]);

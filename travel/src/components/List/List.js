@@ -36,7 +36,7 @@ const List = (props) => {
       ) : (
         <>
           {/* Not working as data doesnot contain Halal details */}
-          <FormControl className={classes.formControl}>
+          {/* <FormControl className={classes.formControl}>
             <InputLabel>Halal</InputLabel>
             <Select
               value={props.isHalal}
@@ -46,7 +46,7 @@ const List = (props) => {
             >
               <MenuItem value="halal">Halal</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           <FormControl className={classes.formControl}>
             <InputLabel>Rating</InputLabel>
@@ -57,9 +57,8 @@ const List = (props) => {
               }}
             >
               <MenuItem value={0}>All</MenuItem>
-              <MenuItem value={3}> 3 ★</MenuItem>
-              <MenuItem value={4}> 4 ★</MenuItem>
-              <MenuItem value={5}> 5 ★</MenuItem>
+              <MenuItem value={4}> 4 ⭐</MenuItem>
+              <MenuItem value={5}> 5 ⭐</MenuItem>
             </Select>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>

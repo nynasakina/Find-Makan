@@ -15,13 +15,13 @@ export const getPlaceData = async (sw, ne) => {
         tr_longitude: ne.lng,
       },
       headers: {
-        "X-RapidAPI-Key": "eeb8cdfba7mshe27b88cf64e2accp1ccb08jsn6680000eadd7",
+        "X-RapidAPI-Key": "b89e598bb2msh2ef8507f39d6b4fp1746ccjsn425d6f5431bf",
         "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
       },
     });
 
     return data;
   } catch (error) {
-    console.log(error);
+    console.log(` Can't connect to API cos ${error.message}`);
   }
 };
