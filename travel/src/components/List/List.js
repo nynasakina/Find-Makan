@@ -16,7 +16,7 @@ import useStyles from "./styles";
 const List = (props) => {
   const classes = useStyles();
   const [type, setType] = useState("restaurants");
-  const [rating, setRating] = useState("");
+
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
@@ -52,15 +52,15 @@ const List = (props) => {
           <FormControl className={classes.formControl}>
             <InputLabel>Rating</InputLabel>
             <Select
-              value={rating}
+              value={props.rating}
               onChange={(e) => {
-                setRating(e.target.value);
+                props.setRating(e.target.value);
               }}
             >
               <MenuItem value={0}>All</MenuItem>
-              <MenuItem value={3}>Above 3.0</MenuItem>
-              <MenuItem value={4}>Above 4.0</MenuItem>
-              <MenuItem value={4.5}>Above 4.5</MenuItem>
+              <MenuItem value={3}> 3 ★</MenuItem>
+              <MenuItem value={4}> 4 ★</MenuItem>
+              <MenuItem value={5}> 5 ★</MenuItem>
             </Select>
           </FormControl>
           <Grid container spacing={3} className={classes.list}>

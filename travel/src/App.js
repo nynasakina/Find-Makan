@@ -12,6 +12,8 @@ const App = () => {
   const [bounds, setBounds] = useState({ sw: 0, ne: 0 });
   const [childClicked, setChildClicked] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [rating, setRating] = useState("");
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
 
   // getting current location of user
   useEffect(() => {
@@ -23,9 +25,15 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const filteredPlace = places.filter((place) => place.rating == rating);
+    setFilteredPlaces(filteredPlace);
+  }, [rating]);
+
+  useEffect(() => {
     setLoading(true);
     getPlaceData(bounds.sw, bounds.ne).then((data) => {
       setPlaces(data);
+      setFilteredPlaces([]);
       setLoading(false);
     });
   }, [coordinates, bounds]);
@@ -36,7 +44,13 @@ const App = () => {
       <Header />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
-          <List places={places} childClicked={childClicked} loading={loading} />
+          <List
+            places={filteredPlaces.length ? filteredPlaces : places}
+            childClicked={childClicked}
+            loading={loading}
+            rating={rating}
+            setRating={setRating}
+          />
         </Grid>
 
         <Grid item xs={12} md={8}>
@@ -44,7 +58,7 @@ const App = () => {
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}
-            places={places}
+            places={filteredPlaces.length ? filteredPlaces : places}
             setChildClicked={setChildClicked}
           />
         </Grid>
