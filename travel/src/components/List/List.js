@@ -13,24 +13,16 @@ import PlaceDetails from "../PlaceDetails/PlaceDetails.js";
 
 import useStyles from "./styles";
 
-const List = () => {
+const List = (props) => {
   const classes = useStyles();
   const [type, setType] = useState("restaurants");
   const [rating, setRating] = useState("");
 
-  const places = [
-    { name: "Hello World" },
-    { name: "Hello Hotel" },
-    { name: "Hello Room" },
-  ];
-
-  console.log(places);
+  console.log(`List props: ${props}`);
   return (
     <>
       <div className={classes.container}>
-        <Typography variant="h4">
-          Restaurants, Hotels & Attractions around you
-        </Typography>
+        <Typography variant="h4">Makan Near You</Typography>
         <FormControl className={classes.formControl}>
           <InputLabel>Type</InputLabel>
           <Select
@@ -60,7 +52,7 @@ const List = () => {
           </Select>
         </FormControl>
         <Grid container spacing={3} className={classes.list}>
-          {places?.map((place, i) => (
+          {props.places?.map((place, i) => (
             <Grid item key={i} xs={12}>
               <PlaceDetails place={place} />
             </Grid>
