@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import { Paper, Typography, useMediaQuery } from "@material-ui/core";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
@@ -26,7 +26,7 @@ const Map = (props) => {
             props.setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
           }}
           onChildClick={(child) => {
-            props.setChildClicked(child)
+            props.setChildClicked(child);
           }}
         >
           {props.places?.map((places, i) => (
