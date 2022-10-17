@@ -27,12 +27,14 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const filteredPlace = places.filter((place) => place.rating == rating);
+    const filteredPlace = places.filter(
+      (place) => Number(place.rating) == rating
+    );
     setFilteredPlaces(filteredPlace);
   }, [rating]);
 
   useEffect(() => {
-    if (bounds) {
+    if (bounds.sw && bounds.ne) {
       setLoading(true);
       getPlaceData(bounds.sw, bounds.ne).then((data) => {
         setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
