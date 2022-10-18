@@ -5,7 +5,7 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Rating from "@material-ui/lab/Rating";
 
 import useStyles from "./styles";
-
+import mapStyles from "./mapStyles";
 const Map = (props) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery("(min-width:600px)");
@@ -20,6 +20,11 @@ const Map = (props) => {
           center={props.coordinates}
           defaultZoom={14}
           margin={[50, 50, 50, 50]}
+          options={{
+            disableDefaultUI: true,
+            zoomControl: true,
+            styles: mapStyles,
+          }}
           onChange={(e) => {
             console.log(e);
             props.setCoordinates({ lat: e.center.lat, lng: e.center.lng });

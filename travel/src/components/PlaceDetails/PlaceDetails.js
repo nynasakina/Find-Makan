@@ -19,7 +19,10 @@ const PlaceDetails = (props) => {
   const classes = useStyles();
 
   if (props.selected)
-    props.refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    props.refProp?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   return (
     <>
       <Card elevation={6}>
@@ -33,7 +36,7 @@ const PlaceDetails = (props) => {
           }
         />
         <Typography gutterBottom variant="h1" />
-        {props.place.name}
+        <strong>{props.place.name}</strong>
         <Box display="flex" justifyContent="space-between">
           <Typography variant="subtitle1">Price</Typography>
           <Typography gutterBottom variant="subtitle1">
