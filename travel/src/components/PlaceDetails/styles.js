@@ -15,4 +15,7 @@ export default makeStyles(() => ({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  h1: {
+    fontSize: "30px",
+  },
 }));
